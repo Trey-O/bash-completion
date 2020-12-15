@@ -20,8 +20,8 @@ jobs:
     strategy:
       matrix:
         include:
-          - dist: alpine
-            network: bridge
+          #- dist: alpine
+          #  network: bridge
           - dist: debian10
             bsd: true
             network: none
