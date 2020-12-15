@@ -8,6 +8,7 @@ fi
 export bashcomp_bash=bash
 env
 
+mkdir -p /work
 cp -a . /work
 cd /work
 
