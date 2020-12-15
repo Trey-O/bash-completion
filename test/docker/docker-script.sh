@@ -9,7 +9,6 @@ export bashcomp_bash=bash
 env
 
 if [ -z "${CI-}" ]; then
-    mkdir -p /work
     cp -a . /work
     cd /work
 fi

@@ -21,12 +21,12 @@ jobs:
       matrix:
         include:
           - dist: alpine
-          - dist: centos7
+          #- dist: centos7
           - dist: debian10
           - dist: debian10
             bsd: true
           - dist: fedoradev
-          - dist: ubuntu14
+          #- dist: ubuntu14
     container:
       image: vskytta/bash-completion:${{matrix.dist}}
       env:
