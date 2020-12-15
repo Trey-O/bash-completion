@@ -15,24 +15,31 @@ jobs:
           go-version: ">=1.15"  # for shfmt
       - uses: pre-commit/action@v2.0.0
 
-  test:
+  distcheck:
     runs-on: ubuntu-latest
     strategy:
       matrix:
         include:
-          #- dist: alpine
-          #  network: bridge
+          - dist: alpine
+          - dist: centos7
+          - dist: debian10
           - dist: debian10
             bsd: true
-            network: none
+          - dist: fedoradev
+          - dist: ubuntu14
     container:
       image: vskytta/bash-completion:${{matrix.dist}}
       env:
         CI: true
         DIST: ${{matrix.dist}}
         BSD: ${{matrix.bsd}}
-        NETWORK: ${{matrix.network}}
-      options: --tty --network ${{matrix.network}}
+      volumes:
+        - ${{github.workspace}}/work:/work
+      options: --tty
     steps:
       - uses: actions/checkout@v2
-      - run: test/docker/docker-script.sh
+      - run: test/docker/docker-script.sh; ls -la work/
+
+  # TODO releases config
+  # - for tags [0-9]+.[0-9]+ in scop/bash-completion
+  # - tarball should be in work/bash-completion-${GITHUB_REF##*/}.tar.xz
