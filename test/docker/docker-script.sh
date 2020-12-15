@@ -8,12 +8,11 @@ fi
 export bashcomp_bash=bash
 env
 
-pwd
-ls -la
-
-mkdir -p /work
-cp -a . /work
-cd /work
+if [ -z "${CI-}" ]; then
+    mkdir -p /work
+    cp -a . /work
+    cd /work
+fi
 
 autoreconf -i
 ./configure

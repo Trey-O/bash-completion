@@ -33,13 +33,11 @@ jobs:
         CI: true
         DIST: ${{matrix.dist}}
         BSD: ${{matrix.bsd}}
-      volumes:
-        - ${{github.workspace}}/work:/work
       options: --tty
     steps:
       - uses: actions/checkout@v2
-      - run: test/docker/docker-script.sh; ls -la work/
+      - run: test/docker/docker-script.sh; ls -la
 
   # TODO releases config
   # - for tags [0-9]+.[0-9]+ in scop/bash-completion
-  # - tarball should be in work/bash-completion-${GITHUB_REF##*/}.tar.xz
+  # - tarball should be in bash-completion-${GITHUB_REF##*/}.tar.xz
