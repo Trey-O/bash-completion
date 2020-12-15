@@ -33,9 +33,7 @@ jobs:
         CI: true
         DIST: ${{matrix.dist}}
         BSD: ${{matrix.bsd}}
-      volumes:
-        - ${{github.workspace}}/work:/work
-      options: --tty
+      options: --tty --volume ${{github.workspace}}/work:/work
     steps:
       - uses: actions/checkout@v2
       - run: test/docker/docker-script.sh; ls -la work/
